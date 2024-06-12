@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ViolatorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,12 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
+});
+
+
+// ** Route for Encoder
+Route::group(['middleware' => ['auth', 'role:encoder']], function() {
+    Route::post('violators', [ViolatorController::class, 'store'])->name('violators.store');
 });
 
 Route::middleware('auth')->group(function () {
