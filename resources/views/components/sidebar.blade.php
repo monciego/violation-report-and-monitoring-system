@@ -41,6 +41,20 @@
                         </span>
                     </div>
                 </x-nav-link>
+                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    <div class="flex items-center">
+                        <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                            <path
+                                class="fill-current {{ request()->routeIs('register') ? 'text-indigo-600' : 'text-gray-600' }}"
+                                d="M8.07 16H10V8H8.07a8 8 0 110 8z" />
+                            <path class="fill-current text-slate-400" d="M15 12L8 6v5H0v2h8v5z" />
+                        </svg>
+                        <span
+                            class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200 {{ request()->routeIs('dashboard') ? 'text-white' : 'text-gray-300' }}">
+                            {{ __('Register') }}
+                        </span>
+                    </div>
+                </x-nav-link>
             </ul>
         </div>
     </nav>
