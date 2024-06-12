@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
-
+})->middleware('guest');
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
