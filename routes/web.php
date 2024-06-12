@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,13 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+});
+
+// ** Route for superadministrator
+Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
+    Route::get('register', [RegisteredUserController::class, 'create'])
+                ->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {
