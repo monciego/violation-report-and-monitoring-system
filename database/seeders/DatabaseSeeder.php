@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LaratrustSeeder::class);
 
         $superadministrator = User::factory()->create([
-            'name' => "Ma'am Belle",
+            'name' => "Ma'am Belinda Martinez",
             'email' => 'superadministrator@gwc.com',
             'password' => Hash::make('superadministrator@gwc.com'),
         ]);
