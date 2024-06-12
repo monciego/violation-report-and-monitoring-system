@@ -41,6 +41,7 @@
                         </span>
                     </div>
                 </x-nav-link>
+                @role('superadministrator')
                 <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                     <div class="flex items-center">
                         <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
@@ -55,6 +56,7 @@
                         </span>
                     </div>
                 </x-nav-link>
+                @endrole
             </ul>
         </div>
     </nav>
