@@ -19,23 +19,23 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
-
-        <!-- Page Heading -->
-        @isset($header)
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-        @endisset
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
+<body class="font-sans antialiased bg-[#F0F4F8]">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar/Navigation -->
+        @include('components.sidebar')
+        <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+            <!-- Header -->
+            {{-- @include('components.header') --}}
+            <!-- Contents -->
+            <main>
+                <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+                    {{--
+                    <x-success-message />
+                    <x-danger-message /> --}}
+                    {{ $slot }}
+                </div>
+            </main>
+        </div>
     </div>
 </body>
 
