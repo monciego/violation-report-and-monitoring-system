@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StudentInformation extends Model
 {
@@ -23,4 +24,10 @@ class StudentInformation extends Model
         "name_of_guardian",
         "guardian_contact_number",
     ];
+
+    /* violation */
+    public function violators(): HasMany
+    {
+        return $this->hasMany(Violator::class);
+    }
 }

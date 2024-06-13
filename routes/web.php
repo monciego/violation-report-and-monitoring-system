@@ -5,7 +5,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentInformationController;
 use App\Http\Controllers\ViolatorController;
-use App\Models\StudentInformation;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +25,12 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 // ** Route for guard and superadministrator
 Route::group(['middleware' => ['auth', 'role:guard|superadministrator']], function() {
     Route::get('students-information', [StudentInformationController::class, 'index'])->name("students.index");
+});
+
+// ** Route for guard
+Route::group(['middleware' => ['auth', 'role:guard']], function() {
+    Route::get('violator/create/{student}', [ViolatorController::class, 'create'])->name("violator.create");
+    Route::post('violator', [ViolatorController::class, 'store'])->name("violator.store");
 });
 
 // ** Route for Encoder
