@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include('components.welcome-banner')
+    <x-welcome-banner />
     <div class="mt-6">
         @include('pages.encoder.dashboard.partials.violator-information-form')
     </div>

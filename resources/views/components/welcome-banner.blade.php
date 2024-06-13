@@ -1,3 +1,4 @@
+@props(["description" => null])
 <div class="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
     <div class="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
         <svg width="319" height="198" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -44,7 +45,7 @@
         <h1 class="text-2xl md:text-3xl text-slate-800 font-bold mb-1">
             Good <span class="greeting"></span>, {{ Auth::user()->name }} 👋
         </h1>
-        <p>Here are the latest updates from your monitoring.</p>
+        <p>{{ $description }}</p>
     </div>
 </div>
 
