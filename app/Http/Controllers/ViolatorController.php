@@ -13,7 +13,8 @@ class ViolatorController extends Controller
      */
     public function index()
     {
-        //
+        $violators = Violator::latest()->get();
+        return view("pages.guard.violators-list.index", compact('violators'));
     }
 
     /**
