@@ -75,6 +75,11 @@
                 {{ __('Register') }}
             </x-responsive-nav-link>
             @endrole
+            @role(['guard', 'superadministrator'])
+            <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
+                {{ __('Student\'s Information') }}
+            </x-responsive-nav-link>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->

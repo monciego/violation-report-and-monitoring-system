@@ -57,7 +57,7 @@
                     </div>
                 </x-nav-link>
                 @endrole
-                @role('guard')
+                @role(['guard', 'superadministrator'])
                 <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                     <div class="flex items-center">
 
