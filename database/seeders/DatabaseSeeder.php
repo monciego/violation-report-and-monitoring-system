@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
+        $this->call(StudentInformationSeeder::class);
 
         $superadministrator = User::factory()->create([
             'name' => "Ma'am Belinda Martinez",
@@ -24,5 +25,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $superadministrator->addRole('superadministrator');
+
+        $guard = User::factory()->create([
+            'name' => "Guard",
+            'email' => 'guard@gwc.com',
+            'password' => Hash::make('guard@gwc.com'),
+        ]);
+
+        $guard->addRole('guard');
+
+        $encoder = User::factory()->create([
+            'name' => "Encoder",
+            'email' => 'encoder@gwc.com',
+            'department' => 'Information Technology Department',
+            'password' => Hash::make('encoder@gwc.com'),
+        ]);
+
+        $encoder->addRole('encoder');
     }
 }

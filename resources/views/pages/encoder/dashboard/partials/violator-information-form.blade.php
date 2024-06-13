@@ -1,6 +1,6 @@
 <div class="bg-white p-4 rounded shadow-sm">
-    <h2 class="mb-6 text-xl font-bold">Register Violator's Information</h2>
-    <form action="{{ route('violators.store') }}" method="POST">
+    <h2 class="mb-6 text-xl font-bold">Register Student's Information</h2>
+    <form action="{{ route('students.store') }}" method="POST">
         @csrf
         <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div class="col-span-2">

@@ -1,17 +1,17 @@
-{{-- <x-app-layout>
+<x-app-layout>
     <header class="mb-6">
-        <h2 class="text-xl font-bold">List of Violators</h2>
+        <h2 class="text-xl font-bold">List of Students</h2>
     </header>
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-4 lg:grid-cols-6">
-        @foreach ($violators as $violator)
+        @foreach ($studentsInformation as $student)
         <div class="col-span-2 w-full border rounded-lg shadow bg-gray-800 border-gray-700">
             <div class="flex flex-col items-center py-10">
                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ asset('assets/images/logo.png') }}"
                     alt="Bonnie image" />
-                <h5 class="mb-1 text-xl font-medium text-white">{{ $violator->first_name }} {{
-                    $violator->last_name }}</h5>
-                <span class="text-sm text-gray-100">{{ $violator->student_id }}</span>
-                <span class="text-sm text-gray-400">{{ $violator->department }}</span>
+                <h5 class="mb-1 text-xl font-medium text-white">{{ $student->first_name }} {{
+                    $student->last_name }}</h5>
+                <span class="text-sm text-gray-100">{{ $student->student_id }}</span>
+                <span class="text-sm text-gray-400">{{ $student->department }}</span>
                 <div class="flex mt-4 md:mt-6">
                     <a href="#"
                         class="inline-flex items-center px-4 py-2 text-xs font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
@@ -25,4 +25,7 @@
         </div>
         @endforeach
     </div>
-</x-app-layout> --}}
+    <div class="mt-4">
+        {{ $studentsInformation->links() }}
+    </div>
+</x-app-layout>

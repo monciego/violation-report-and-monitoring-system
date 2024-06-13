@@ -13,8 +13,7 @@ class ViolatorController extends Controller
      */
     public function index()
     {
-        $violators = Violator::latest()->get();
-        return view("pages.guard.violators-list.index", compact('violators'));
+
     }
 
     /**
@@ -30,33 +29,7 @@ class ViolatorController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'student_id' => 'required|string|max:255',
-            'first_name' => 'required|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'sex' => 'required|string|max:255',
-            'department' => 'required|string|max:255',
-            'year_course' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'contact_number' => 'required|string|max:255',
-            'birthdate' => 'required|date',
-            'name_of_guardian' => 'nullable|string|max:255',
-            'guardian_contact_number' => 'nullable|string|max:255',
-        ]);
-
-
-        // Calculate age
-        $birthdate = Carbon::parse($validated['birthdate']);
-        $age = $birthdate->age;
-
-        // Add age to the validated data
-        $validated['age'] = $age;
-
-        // Create the Violator record
-        Violator::create($validated);
-
-        return redirect()->back();
+        //
     }
 
     /**
