@@ -56,6 +56,25 @@
                         </span>
                     </div>
                 </x-nav-link>
+                <x-nav-link :href="route('violator.index')" :active="request()->routeIs('violator.index')">
+                    <div class="flex items-center">
+                        <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                            <path class="fill-current
+                                {{ request()->routeIs('violator.index') ? 'text-indigo-500' : 'text-gray-600' }}"
+                                d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z" />
+                            <path class="fill-current
+                                {{ request()->routeIs('violator.index') ? 'text-indigo-500' : 'text-gray-600' }}"
+                                d="M1 1h22v23H1z" />
+                            <path class="fill-current
+                                {{ request()->routeIs('violator.index') ? 'text-indigo-300' : 'text-gray-400' }}"
+                                d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z" />
+                        </svg>
+                        <span
+                            class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200 {{ request()->routeIs('students.index') ? 'text-white' : 'text-gray-300' }}">
+                            {{ __('Violator\'s List') }}
+                        </span>
+                    </div>
+                </x-nav-link>
                 @endrole
                 @role(['guard', 'superadministrator'])
                 <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
@@ -72,7 +91,7 @@
                         </svg>
                         <span
                             class="text-sm font-medium ml-3 lg:opacity-100 2xl:opacity-100 duration-200 {{ request()->routeIs('students.index') ? 'text-white' : 'text-gray-300' }}">
-                            {{ __('Student\'s List') }}
+                            {{ __('Student\'s Information') }}
                         </span>
                     </div>
                 </x-nav-link>

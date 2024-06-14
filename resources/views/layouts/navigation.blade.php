@@ -74,6 +74,9 @@
             <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
                 {{ __('Register') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('violator.index')" :active="request()->routeIs('violator.index')">
+                {{ __('Violator\'s List') }}
+            </x-responsive-nav-link>
             @endrole
             @role(['guard', 'superadministrator'])
             <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">

@@ -21,6 +21,6 @@ class Violator extends Model
 
     public function student(): BelongsTo
     {
-        return $this->belongsTo(StudentInformation::class);
+        return $this->belongsTo(StudentInformation::class, "student_information_id");
     }
 }

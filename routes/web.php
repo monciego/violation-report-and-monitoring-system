@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::get('violators', [ViolatorController::class, 'index'])->name("violator.index");
 });
 
 // ** Route for guard and superadministrator

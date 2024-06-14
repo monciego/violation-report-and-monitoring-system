@@ -14,7 +14,8 @@ class ViolatorController extends Controller
      */
     public function index()
     {
-
+        $violators = Violator::with("student")->latest()->paginate(10);
+        return view("pages.guard.violators-list.index", compact("violators"));
     }
 
     /**
