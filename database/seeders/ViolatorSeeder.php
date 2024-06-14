@@ -13,6 +13,6 @@ class ViolatorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Violator::factory()->count(50)->create();
     }
 }

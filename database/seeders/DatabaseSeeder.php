@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(LaratrustSeeder::class);
         $this->call(StudentInformationSeeder::class);
+        $this->call(ViolatorSeeder::class);
 
         $superadministrator = User::factory()->create([
             'name' => "Ma'am Belinda Martinez",
