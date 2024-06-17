@@ -56,7 +56,7 @@ class StudentInformationController extends Controller
         // Create the Violator record
         StudentInformation::create($validated);
 
-        return redirect()->back();
+        return redirect()->back()->with("success-message", "Student Information created successfully!");
     }
 
     /**

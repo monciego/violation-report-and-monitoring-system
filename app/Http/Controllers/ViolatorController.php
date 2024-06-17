@@ -49,7 +49,7 @@ class ViolatorController extends Controller
             "comment" => $request->comment,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with("success-message", "Violation added successfully!");
     }
 
     /**

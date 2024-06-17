@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
         $user->addRole($request->role_id);
         event(new Registered($user));
 
-        return redirect()->back();
+        return redirect()->back()->with("success-message", $request->name . " Registered Successfully!");
     }
 }
