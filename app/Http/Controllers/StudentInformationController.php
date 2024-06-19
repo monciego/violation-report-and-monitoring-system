@@ -64,7 +64,9 @@ class StudentInformationController extends Controller
      */
     public function show(StudentInformation $studentInformation)
     {
-        //
+        return view("pages.guard.students-list.show", [
+            'studentInformation' => $studentInformation
+        ]);
     }
 
     /**

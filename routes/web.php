@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
 // ** Route for guard and superadministrator
 Route::group(['middleware' => ['auth', 'role:guard|superadministrator']], function() {
     Route::get('students-information', [StudentInformationController::class, 'index'])->name("students.index");
+    Route::get('students-information/{studentInformation}', [StudentInformationController::class, 'show'])->name("students.show");
 });
 
 // ** Route for guard
