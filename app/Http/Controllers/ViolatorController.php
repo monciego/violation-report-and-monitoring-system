@@ -53,6 +53,21 @@ class ViolatorController extends Controller
     }
 
     /**
+     * Resolve violation
+     */
+    public function resolve(Request $request)
+    {
+        Violator::updateOrCreate([
+            "id" => $request->id,
+        ], [
+            "status" => "resolved"
+        ]);
+
+        return redirect()->back()->with("success-message", "Violation resolved successfully!");
+    }
+
+
+    /**
      * Display the specified resource.
      */
     public function show(StudentInformation $studentInformation)

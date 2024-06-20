@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div>
+    <div class="pb-10">
         <div class="px-4 sm:px-0">
             <div class="flex items-center gap-2">
                 <h3 class="text-base font-semibold leading-7 text-gray-900">{{ $violator->first_name}} {{
@@ -86,7 +86,7 @@
 
         <h2 class="mt-4 text-lg font-bold">Violations:</h2>
 
-        <div class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-4 lg:grid-cols-2">
             @foreach ($violator->violators as $violation)
             <div class="md:col-span-1">
                 <div x-data="{open:false}" class="inline">
@@ -130,9 +130,13 @@
                                         </div>
                                     </div>
                                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                        <button type="button"
-                                            class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto">Yes,
-                                            mark as resolve.</button>
+                                        <form method="POST" action="{{ route('resolve-violation') }}">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $violation->id }}">
+                                            <button type="submit"
+                                                class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto">Yes,
+                                                mark as resolve.</button>
+                                        </form>
                                         <button type="button" x-on:click="open = false"
                                             class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
                                     </div>
@@ -142,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="sm:px-0 relative bg-[#F3F1C9] border-black border-2 z-[50] h-full rounded-[10px]">
+                <div class="sm:px-0 relative bg-[#F3F1C9] border-black border-2 z-[50] rounded-[10px]">
                     @if ($violation->status === "pending")
                     <span
                         class="stamp text-xl is-nope absolute top-[50%] text-center flex items-center justify-center left-2/4 transform  -translate-x-2/4 -translate-y-2/4">
