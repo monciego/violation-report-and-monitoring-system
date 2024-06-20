@@ -84,12 +84,65 @@
             </dl>
         </div>
 
-        <h2 class="my-4 text-lg font-bold">Violations:</h2>
+        <h2 class="mt-4 text-lg font-bold">Violations:</h2>
 
         <div class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-2">
             @foreach ($violator->violators as $violation)
             <div class="md:col-span-1">
-                <div class="sm:px-0 relative bg-[#F3F1C9] border-black border-2 z-[50]  h-full rounded-[10px]">
+                <div x-data="{open:false}" class="inline">
+                    <x-primary-button type="button" x-on:click="open = true"
+                        class="my-4 flex items-center justify-center">
+                        {{ __('Mark as resolved') }}
+                    </x-primary-button>
+
+                    <div x-show="open" x-cloak x-on:click="open = false"
+                        class="fixed inset-0 bg-gray-500 bg-opacity-75 z-[500] transition-opacity">
+                    </div>
+                    <div x-show="open" x-cloak>
+                        <div class="fixed inset-0 z-[501] w-screen overflow-y-auto">
+                            <div
+                                class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                <div
+                                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                                        <div class="sm:flex sm:items-start">
+                                            <div
+                                                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                                </svg>
+                                            </div>
+                                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                                <h3 class="text-base font-semibold leading-6 text-gray-900"
+                                                    id="modal-title">
+                                                    Mark as resolved
+                                                </h3>
+                                                <div class="mt-2">
+                                                    <p class="text-sm text-gray-500">Are you sure you want to mark this
+                                                        violation <span class="font-bold">({{ $violation->violation
+                                                            }})</span> as resolved? Once marked, this action cannot be
+                                                        undone, so please ensure all necessary steps have been completed
+                                                        before proceeding.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                        <button type="button"
+                                            class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto">Yes,
+                                            mark as resolve.</button>
+                                        <button type="button" x-on:click="open = false"
+                                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:px-0 relative bg-[#F3F1C9] border-black border-2 z-[50] h-full rounded-[10px]">
                     @if ($violation->status === "pending")
                     <span
                         class="stamp text-xl is-nope absolute top-[50%] text-center flex items-center justify-center left-2/4 transform  -translate-x-2/4 -translate-y-2/4">
