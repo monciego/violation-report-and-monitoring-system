@@ -14,7 +14,7 @@ class ViolatorController extends Controller
      */
     public function index()
     {
-        $violators = Violator::with("student")->latest()->paginate(10);
+        $violators = StudentInformation::whereHas("violators")->latest()->paginate(10);
         return view("pages.guard.violators-list.index", compact("violators"));
     }
 
@@ -55,9 +55,10 @@ class ViolatorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Violator $violator)
+    public function show(StudentInformation $studentInformation)
     {
-        //
+        $violator = StudentInformation::with("violators")->findOrFail($studentInformation->id);
+        return view("pages.guard.violators-list.show", compact("violator"));
     }
 
     /**

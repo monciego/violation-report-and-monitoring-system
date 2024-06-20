@@ -4,17 +4,13 @@
     </header>
     @php $headers = ['Student ID', 'First Name', 'Last Name', 'Department', 'Action'];
     $data = $violators->map(function ($violator) {
-    return [$violator->student->student_id, $violator->student->first_name, $violator->student->last_name,
-    $violator->student->department,
+    return [$violator->student_id, $violator->first_name, $violator->last_name,
+    $violator->department,
     '
     <div class="flex items-center gap-2">
-        <a href="' . route('violator.index') . '"
+        <a href="' . route('violator.show', $violator) . '"
             class="inline-flex items-center gap-1 text-indigo-700 p-1 px-3 text-sm rounded">
             Show More
-        </a>
-        <a href="' . route('violator.index') . '"
-            class="inline-flex items-center gap-1 bg-indigo-500 hover:bg-indigo-600 text-white p-1 px-3 text-sm rounded">
-            Resolve
         </a>
     </div>
     '
