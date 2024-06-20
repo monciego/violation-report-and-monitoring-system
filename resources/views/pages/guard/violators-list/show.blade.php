@@ -76,9 +76,15 @@
                     </dd>
                 </div>
                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Violation Count</dt>
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Pending Violation Count</dt>
                     <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        {{ $violator->violators->count()}}
+                        {{ $violator->violators->where('status', 'pending')->count() }}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Resolved Violation Count</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        {{ $violator->violators->where('status', 'resolved')->count() }}
                     </dd>
                 </div>
             </dl>
@@ -121,7 +127,8 @@
                                                 </h3>
                                                 <div class="mt-2">
                                                     <p class="text-sm text-gray-500">Are you sure you want to mark this
-                                                        violation <span class="font-bold">({{ $violation->violation
+                                                        violation <span class="font-bold text-black">({{
+                                                            $violation->violation
                                                             }})</span> as resolved? Once marked, this action cannot be
                                                         undone, so please ensure all necessary steps have been completed
                                                         before proceeding.</p>
