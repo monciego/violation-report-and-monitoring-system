@@ -36,7 +36,7 @@
             @include('layouts.navigation')
             <!-- Contents -->
             <main>
-                <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+                <div class="px-4 sm:px-6 lg:px-8 py-24 w-full max-w-9xl mx-auto">
                     <x-success-message />
                     {{ $slot }}
                 </div>
