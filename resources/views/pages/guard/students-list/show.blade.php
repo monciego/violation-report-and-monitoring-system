@@ -1,9 +1,14 @@
 <x-app-layout>
     <div>
         <div class="px-4 sm:px-0">
-            <h3 class="text-base font-semibold leading-7 text-gray-900">{{ $studentInformation->first_name}} {{
-                $studentInformation->last_name }} Information
-            </h3>
+            <div class="sm:flex sm:item-center gap-2">
+                <h3 class="text-base font-semibold leading-7 text-gray-900">{{ $studentInformation->first_name}} {{
+                    $studentInformation->last_name }} Information
+                </h3>
+                <div class="bg-indigo-600 text-xs py-1.5 px-3 text-white rounded inline-block">
+                    Student ID: {{ $studentInformation->student_id }}
+                </div>
+            </div>
             <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal informations of student.</p>
         </div>
         <div class="mt-6 border-t border-gray-100">
