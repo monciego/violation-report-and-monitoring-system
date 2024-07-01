@@ -38,6 +38,10 @@ public function scopeFilter($query, array $filters)
                   ->orWhereRaw("CONCAT(first_name, ' ', middle_name, ' ', last_name) like ?", [$searchTerm]);
         });
     }
+
+     if($filters['filter'] ?? false) {
+        $query->where('department', request('filter'));
+    }
 }
 
     /* violation */
