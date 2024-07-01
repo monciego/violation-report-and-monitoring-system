@@ -20,9 +20,13 @@ Route::group(['middleware' => ['auth', 'role:superadministrator']], function() {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('resolve-violation', [ViolatorController::class, 'resolve'])->name("resolve-violation");
+});
+
+// ** Route for guard and superadministrator and college dean
+Route::group(['middleware' => ['auth', 'role:superadministrator|college_dean']], function() {
     Route::get('violators', [ViolatorController::class, 'index'])->name("violator.index");
     Route::get('violator/{studentInformation}', [ViolatorController::class, 'show'])->name("violator.show");
-    Route::post('resolve-violation', [ViolatorController::class, 'resolve'])->name("resolve-violation");
 });
 
 // ** Route for guard and superadministrator

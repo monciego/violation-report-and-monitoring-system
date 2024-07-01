@@ -6,6 +6,7 @@ use App\Models\StudentInformation;
 use App\Models\Violator;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ViolatorController extends Controller
 {
@@ -14,7 +15,14 @@ class ViolatorController extends Controller
      */
     public function index()
     {
-        $violators = StudentInformation::whereHas("violators")->latest()->paginate(10);
+        /** @var \App\Models\User */
+        $user = Auth::user();
+        if ($user->hasRole('superadministrator')) {
+            $violators = StudentInformation::whereHas("violators")->latest()->paginate(10);
+        } elseif ($user->hasRole("college_dean")) {
+            $violators = StudentInformation::whereHas("violators")->where("department", $user->department)->latest()->paginate(10);
+        }
+
         return view("pages.guard.violators-list.index", compact("violators"));
     }
 
@@ -72,7 +80,13 @@ class ViolatorController extends Controller
      */
     public function show(StudentInformation $studentInformation)
     {
-        $violator = StudentInformation::with("violators")->findOrFail($studentInformation->id);
+        /** @var \App\Models\User */
+        $user = Auth::user();
+        if ($user->hasRole('superadministrator')) {
+            $violator = StudentInformation::with("violators")->findOrFail($studentInformation->id);
+        } elseif ($user->hasRole("college_dean")) {
+            $violator = StudentInformation::with("violators")->where("department", $user->department)->findOrFail($studentInformation->id);
+        }
         return view("pages.guard.violators-list.show", compact("violator"));
     }
 

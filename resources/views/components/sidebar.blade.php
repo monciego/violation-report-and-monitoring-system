@@ -56,6 +56,8 @@
                         </span>
                     </div>
                 </x-nav-link>
+                @endrole
+                @role(["superadministrator", "college_dean"])
                 <x-nav-link :href="route('violator.index')" :active="request()->routeIs('violator.*')">
                     <div class="flex items-center">
                         <svg class="shrink-0 h-6 w-6" viewBox="0 0 24 24">
