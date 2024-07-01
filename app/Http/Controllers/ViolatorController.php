@@ -18,9 +18,9 @@ class ViolatorController extends Controller
         /** @var \App\Models\User */
         $user = Auth::user();
         if ($user->hasRole('superadministrator')) {
-            $violators = StudentInformation::whereHas("violators")->latest()->paginate(10);
+            $violators = StudentInformation::whereHas("violators")->latest()->filter(request(["search"]))->paginate(10);
         } elseif ($user->hasRole("college_dean")) {
-            $violators = StudentInformation::whereHas("violators")->where("department", $user->department)->latest()->paginate(10);
+            $violators = StudentInformation::whereHas("violators")->where("department", $user->department)->latest()->filter(request(["search"]))->paginate(10);
         }
 
         return view("pages.guard.violators-list.index", compact("violators"));
