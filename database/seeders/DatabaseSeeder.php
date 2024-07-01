@@ -43,5 +43,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $encoder->addRole('encoder');
+
+        $college_dean = User::factory()->create([
+            'name' => "Dean",
+            'email' => 'dean@gwc.com',
+            'department' => 'Information Technology Department',
+            'password' => Hash::make('dean@gwc.com'),
+        ]);
+
+        $college_dean->addRole('college_dean');
     }
 }
