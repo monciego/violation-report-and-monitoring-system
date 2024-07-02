@@ -42,6 +42,14 @@ public function scopeFilter($query, array $filters)
      if($filters['filter'] ?? false) {
         $query->where('department', request('filter'));
     }
+
+
+ if ($filters['month'] ?? false && $filters['year'] ?? false) {
+        $query->whereHas('violators', function($query) use ($filters) {
+            $query->whereMonth('violation_date', $filters['month'])
+                  ->whereYear('violation_date', $filters['year']);
+        });
+    }
 }
 
     /* violation */

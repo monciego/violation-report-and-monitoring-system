@@ -13,14 +13,16 @@ class ViolatorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         /** @var \App\Models\User */
         $user = Auth::user();
+        $filters = $request->only(['search', 'month', 'year', 'filter']);
+
         if ($user->hasRole('superadministrator')) {
-            $violators = StudentInformation::whereHas("violators")->latest()->filter(request(["search", "filter"]))->paginate(10);
+            $violators = StudentInformation::whereHas("violators")->latest()->filter($filters)->paginate(10);
         } elseif ($user->hasRole("college_dean")) {
-            $violators = StudentInformation::whereHas("violators")->where("department", $user->department)->latest()->filter(request(["search"]))->paginate(10);
+            $violators = StudentInformation::whereHas("violators")->where("department", $user->department)->latest()->filter(request(["search", "month", "year"]))->paginate(10);
         }
 
         return view("pages.guard.violators-list.index", compact("violators"));

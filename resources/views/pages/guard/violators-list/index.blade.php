@@ -1,11 +1,37 @@
 <x-app-layout>
     <header class="mb-6 flex items-center justify-between">
         <h2 class="text-xl font-bold">List of Violators</h2>
-        <div class="flex items-center">
+        <div class="flex gap-2 items-center">
+            <p>Filter by:</p>
+            <div x-data="{open:false}" class="relative">
+                <x-primary-button x-on:click="open = !open" class="text-xs capitalize font-normal tracking-normal"
+                    type="button">
+                    month<svg class="w-2.5 h-2.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg>
+                </x-primary-button>
+                <!-- Dropdown menu -->
+                <div x-show="open" class="absolute h-48 overflow-scroll bg-white rounded-lg shadow mt-2">
+                    <ul class="py-2 overflow-y-auto text-gray-700" aria-labelledby="dropdownUsersButton">
+                        <li>
+                            @for ($i = 1; $i <= 12; $i++) @php $isActive=request('month')==$i &&
+                                request('year')==date('Y'); @endphp <a
+                                class="flex text-sm items-center px-4 py-2 text-nowrap hover:bg-gray-200 {{ $isActive ? 'bg-gray-200' : '' }}"
+                                href="{{ route('violator.index', array_merge(request()->all(), ['month' => $i, 'year' => date('Y')])) }}">
+                                {{ date('F', mktime(0, 0, 0, $i, 1)) }}
+                                </a>
+                                @endfor
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             @role("superadministrator")
             <div x-data="{open:false}" class="relative">
                 <x-primary-button x-on:click="open = !open" class="text-xs capitalize font-normal tracking-normal"
-                    type="button">Filter by
+                    type="button">
                     department <svg class="w-2.5 h-2.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,7 +63,7 @@
             </div>
             @endrole
 
-            <div class="px-2">
+            <div>
                 <form action="{{ route('violator.index') }}" class="flex items-center">
                     <label for="search" class="sr-only">Search</label>
                     <div class="relative w-full">
