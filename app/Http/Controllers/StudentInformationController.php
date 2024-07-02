@@ -31,7 +31,7 @@ class StudentInformationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'student_id' => 'required|string|max:255',
+            'student_id' => 'required|string|max:255|unique:student_information,student_id',
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
